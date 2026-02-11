@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haard Rao | SignalOps</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* ===== BASE ===== */
+body{
+margin:0;
+font-family:'Inter',sans-serif;
+background:linear-gradient(180deg,#05070c,#0b1220);
+color:#eaf0ff;
+overflow-x:hidden;
+}
+
+/* ===== GRID BACKGROUND ===== */
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
+linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+background-size:40px 40px;
+opacity:.4;
+pointer-events:none;
+}
+
+/* ===== NAV ===== */
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:16px 5vw;
+background:rgba(5,8,14,.6);
+backdrop-filter:blur(12px);
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+nav h2{
+margin:0;
+font-weight:800;
+letter-spacing:1px;
+}
+
+nav a{
+color:#aaa;
+text-decoration:none;
+margin-left:20px;
+font-size:14px;
+}
+
+nav a:hover{color:white}
+
+/* ===== HERO ===== */
+.hero{
+padding-top:120px;
+width:90%;
+max-width:1100px;
+margin:auto;
+display:grid;
+grid-template-columns:1.2fr 1fr;
+gap:40px;
+}
+
+h1{
+font-size:52px;
+margin:0;
+}
+
+.subtitle{
+color:#9fb3ff;
+font-weight:600;
+margin-top:10px;
+display:block;
+}
+
+.tagline{
+margin-top:20px;
+font-family:'JetBrains Mono',monospace;
+color:#7dd3fc;
+}
+
+/* ===== PANEL ===== */
+.panel{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.1);
+border-radius:16px;
+padding:20px;
+box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+
+.metric{
+margin-top:20px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+
+.metric div{
+background:rgba(255,255,255,.04);
+padding:12px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.metric strong{
+display:block;
+font-size:18px;
+}
+
+/* ===== SECTION ===== */
+.section{
+margin-top:100px;
+width:90%;
+max-width:1100px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.section h2{
+margin-bottom:20px;
+}
+
+.card{
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.1);
+border-radius:16px;
+padding:20px;
+margin-bottom:20px;
+}
+
+.card:hover{
+transform:translateY(-4px);
+transition:.2s ease;
+}
+
+/* ===== FOOTER ===== */
+footer{
+margin-top:100px;
+padding:40px;
+text-align:center;
+color:#777;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+.hero{grid-template-columns:1fr}
+h1{font-size:40px}
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+<h2>HR / SignalOps</h2>
+<div>
+<a href="#impact">Impact</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</div>
+</nav>
+
+<section class="hero">
+<div>
+<h1>Haard Rao
+<span class="subtitle">Software & Embedded Systems Engineer</span>
+</h1>
+
+<p class="tagline">
+> Building reliable systems across embedded, cloud, and data pipelines.
+</p>
+
+<div class="metric" id="impact">
+<div>
+<strong>2,500+</strong>
+Monthly high-severity cases
+</div>
+<div>
+<strong>25%</strong>
+Faster resolution
+</div>
+<div>
+<strong>35%</strong>
+Repair accuracy uplift
+</div>
+<div>
+<strong>30%</strong>
+Reduced engineering touchpoints
+</div>
+</div>
+</div>
+
+<div class="panel">
+<h3>Live System Telemetry</h3>
+<p style="font-family:JetBrains Mono;font-size:13px;">
+ECU: Infotainment / Telematics<br>
+BUS: CAN / CAN-FD / UDS<br>
+CLOUD: Azure / GCP<br>
+STACK: .NET / Angular / Python
+</p>
+</div>
+</section>
+
+<section class="section" id="projects">
+<h2>Selected Projects</h2>
+
+<div class="card">
+<h3>DeepCANvas – Vehicle Network Security</h3>
+<p>ML-based intrusion detection for CAN traffic with reproducible pipeline and validation workflow.</p>
+</div>
+
+<div class="card">
+<h3>Real-Time Name Pronunciation Engine</h3>
+<p>Low-latency cloud pipeline using GCP, BigQuery, and Firebase for live ceremony workflows.</p>
+</div>
+
+</section>
+
+<section class="section" id="contact">
+<h2>Contact</h2>
+<p>Email: haardrao23@gmail.com</p>
+<p>LinkedIn: linkedin.com/in/haardrao</p>
+</section>
+
+<footer>
+© 2026 Haard Rao — Dark Hybrid Mission UI
+</footer>
+
+</body>
+</html>
