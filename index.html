@@ -1,241 +1,648 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Haard Rao | SignalOps</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-
-<style>
-
-/* ===== BASE ===== */
-body{
-margin:0;
-font-family:'Inter',sans-serif;
-background:linear-gradient(180deg,#05070c,#0b1220);
-color:#eaf0ff;
-overflow-x:hidden;
-}
-
-/* ===== GRID BACKGROUND ===== */
-body::before{
-content:"";
-position:fixed;
-inset:0;
-background:
-linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
-linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
-background-size:40px 40px;
-opacity:.4;
-pointer-events:none;
-}
-
-/* ===== NAV ===== */
-nav{
-position:fixed;
-top:0;
-left:0;
-right:0;
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:16px 5vw;
-background:rgba(5,8,14,.6);
-backdrop-filter:blur(12px);
-border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-nav h2{
-margin:0;
-font-weight:800;
-letter-spacing:1px;
-}
-
-nav a{
-color:#aaa;
-text-decoration:none;
-margin-left:20px;
-font-size:14px;
-}
-
-nav a:hover{color:white}
-
-/* ===== HERO ===== */
-.hero{
-padding-top:120px;
-width:90%;
-max-width:1100px;
-margin:auto;
-display:grid;
-grid-template-columns:1.2fr 1fr;
-gap:40px;
-}
-
-h1{
-font-size:52px;
-margin:0;
-}
-
-.subtitle{
-color:#9fb3ff;
-font-weight:600;
-margin-top:10px;
-display:block;
-}
-
-.tagline{
-margin-top:20px;
-font-family:'JetBrains Mono',monospace;
-color:#7dd3fc;
-}
-
-/* ===== PANEL ===== */
-.panel{
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.1);
-border-radius:16px;
-padding:20px;
-box-shadow:0 20px 60px rgba(0,0,0,.5);
-}
-
-.metric{
-margin-top:20px;
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-}
-
-.metric div{
-background:rgba(255,255,255,.04);
-padding:12px;
-border-radius:12px;
-border:1px solid rgba(255,255,255,.08);
-}
-
-.metric strong{
-display:block;
-font-size:18px;
-}
-
-/* ===== SECTION ===== */
-.section{
-margin-top:100px;
-width:90%;
-max-width:1100px;
-margin-left:auto;
-margin-right:auto;
-}
-
-.section h2{
-margin-bottom:20px;
-}
-
-.card{
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,255,255,.1);
-border-radius:16px;
-padding:20px;
-margin-bottom:20px;
-}
-
-.card:hover{
-transform:translateY(-4px);
-transition:.2s ease;
-}
-
-/* ===== FOOTER ===== */
-footer{
-margin-top:100px;
-padding:40px;
-text-align:center;
-color:#777;
-}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:900px){
-.hero{grid-template-columns:1fr}
-h1{font-size:40px}
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Haard Rao - Software & Systems Engineer specializing in Automotive AI/ML, Embedded Systems, and Cloud Architecture">
+    <title>Haard Rao | Software & Systems Engineer</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">HR</a>
+            <ul class="nav-menu">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#publications" class="nav-link">Publications</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-<nav>
-<h2>HR / SignalOps</h2>
-<div>
-<a href="#impact">Impact</a>
-<a href="#projects">Projects</a>
-<a href="#contact">Contact</a>
-</div>
-</nav>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <!-- 3D Canvas will go here in Phase 2 -->
+            <canvas id="hero-canvas"></canvas>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="hero-title-small">Hello, I'm</span>
+                <span class="hero-title-large">Haard Rao</span>
+            </h1>
+            <p class="hero-subtitle">Software & Systems Engineer</p>
+            <p class="hero-description">
+                Designing mission-critical systems at the intersection of<br>
+                <span class="highlight">Automotive</span> · 
+                <span class="highlight">AI/ML</span> · 
+                <span class="highlight">Embedded Systems</span> · 
+                <span class="highlight">Cloud Architecture</span>
+            </p>
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="assets/HaardRao_Resume.pdf" download class="btn btn-secondary">Download Resume</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
 
-<section class="hero">
-<div>
-<h1>Haard Rao
-<span class="subtitle">Software & Embedded Systems Engineer</span>
-</h1>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="glass-card about-card">
+                <p class="about-text">
+                    Impact-driven software and systems engineer trusted to design, stabilize, and scale mission-critical 
+                    technology across <strong>cloud, AI, embedded, and distributed environments</strong>. Consistently delivers 
+                    measurable performance gains, risk reduction, and operational clarity in systems where failure is 
+                    expensive and ambiguity is constant.
+                </p>
+                <p class="about-text">
+                    Currently at <strong>Ford Motor Company</strong>, I neutralize 2,500+ high-severity vehicle software 
+                    escalations monthly, independently dismantling complex failures across telematics, infotainment, and 
+                    powertrain ECUs. Known for owning problems end-to-end, from deep technical root cause to executive-level 
+                    resolution.
+                </p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">2,500+</span>
+                        <span class="stat-label">Monthly Escalations Resolved</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">40%</span>
+                        <span class="stat-label">Cyber-Attack Exposure Reduced</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">95%</span>
+                        <span class="stat-label">AI Model Accuracy</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Production Projects Deployed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<p class="tagline">
-> Building reliable systems across embedded, cloud, and data pipelines.
-</p>
+    <!-- Skills Section -->
+    <section id="skills" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Core Skills</h2>
+            <div class="skills-grid">
+                
+                <!-- Programming & Systems -->
+                <div class="glass-card skill-category">
+                    <div class="skill-icon">💻</div>
+                    <h3 class="skill-title">Programming & Systems</h3>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Java</span>
+                        <span class="tag">C/C++</span>
+                        <span class="tag">C#</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">Bash</span>
+                        <span class="tag">MATLAB</span>
+                    </div>
+                </div>
 
-<div class="metric" id="impact">
-<div>
-<strong>2,500+</strong>
-Monthly high-severity cases
-</div>
-<div>
-<strong>25%</strong>
-Faster resolution
-</div>
-<div>
-<strong>35%</strong>
-Repair accuracy uplift
-</div>
-<div>
-<strong>30%</strong>
-Reduced engineering touchpoints
-</div>
-</div>
-</div>
+                <!-- AI/ML -->
+                <div class="glass-card skill-category">
+                    <div class="skill-icon">🤖</div>
+                    <h3 class="skill-title">AI/ML & Data Science</h3>
+                    <div class="skill-tags">
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">TensorFlow</span>
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">NLP</span>
+                        <span class="tag">Computer Vision</span>
+                        <span class="tag">Transformers</span>
+                        <span class="tag">OpenCV</span>
+                    </div>
+                </div>
 
-<div class="panel">
-<h3>Live System Telemetry</h3>
-<p style="font-family:JetBrains Mono;font-size:13px;">
-ECU: Infotainment / Telematics<br>
-BUS: CAN / CAN-FD / UDS<br>
-CLOUD: Azure / GCP<br>
-STACK: .NET / Angular / Python
-</p>
-</div>
-</section>
+                <!-- Automotive & Embedded -->
+                <div class="glass-card skill-category">
+                    <div class="skill-icon">🚗</div>
+                    <h3 class="skill-title">Automotive & Embedded</h3>
+                    <div class="skill-tags">
+                        <span class="tag">CAN Bus</span>
+                        <span class="tag">CAN-FD</span>
+                        <span class="tag">ECU Diagnostics</span>
+                        <span class="tag">Embedded C</span>
+                        <span class="tag">ARM</span>
+                        <span class="tag">Arduino</span>
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag">VHDL</span>
+                    </div>
+                </div>
 
-<section class="section" id="projects">
-<h2>Selected Projects</h2>
+                <!-- Cloud & DevOps -->
+                <div class="glass-card skill-category">
+                    <div class="skill-icon">☁️</div>
+                    <h3 class="skill-title">Cloud & DevOps</h3>
+                    <div class="skill-tags">
+                        <span class="tag">AWS</span>
+                        <span class="tag">GCP</span>
+                        <span class="tag">Azure</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Kubernetes</span>
+                        <span class="tag">Jenkins</span>
+                        <span class="tag">CI/CD</span>
+                        <span class="tag">Terraform</span>
+                    </div>
+                </div>
 
-<div class="card">
-<h3>DeepCANvas – Vehicle Network Security</h3>
-<p>ML-based intrusion detection for CAN traffic with reproducible pipeline and validation workflow.</p>
-</div>
+                <!-- Web & Frameworks -->
+                <div class="glass-card skill-category">
+                    <div class="skill-icon">🌐</div>
+                    <h3 class="skill-title">Web & Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="tag">React.js</span>
+                        <span class="tag">Angular</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">.NET Core</span>
+                        <span class="tag">Django</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">Express.js</span>
+                        <span class="tag">Bootstrap</span>
+                    </div>
+                </div>
 
-<div class="card">
-<h3>Real-Time Name Pronunciation Engine</h3>
-<p>Low-latency cloud pipeline using GCP, BigQuery, and Firebase for live ceremony workflows.</p>
-</div>
+                <!-- Databases -->
+                <div class="glass-card skill-category">
+                    <div class="skill-icon">🗄️</div>
+                    <h3 class="skill-title">Databases & Data Systems</h3>
+                    <div class="skill-tags">
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">MongoDB</span>
+                        <span class="tag">Redis</span>
+                        <span class="tag">DynamoDB</span>
+                        <span class="tag">BigQuery</span>
+                        <span class="tag">Firebase</span>
+                        <span class="tag">SQL Server</span>
+                    </div>
+                </div>
 
-</section>
+            </div>
+        </div>
+    </section>
 
-<section class="section" id="contact">
-<h2>Contact</h2>
-<p>Email: haardrao23@gmail.com</p>
-<p>LinkedIn: linkedin.com/in/haardrao</p>
-</section>
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
 
-<footer>
-© 2026 Haard Rao — Dark Hybrid Mission UI
-</footer>
+                <!-- Ford -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="glass-card timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">Field Engineering Analyst</h3>
+                            <span class="timeline-company">Ford Motor Company</span>
+                        </div>
+                        <div class="timeline-meta">
+                            <span class="timeline-location">📍 Farmington, MI</span>
+                            <span class="timeline-date">June 2025 – Present</span>
+                        </div>
+                        <ul class="timeline-achievements">
+                            <li>Neutralized <strong>2,500+ high-severity</strong> vehicle software escalations monthly, cutting direct engineering dependency by 30%</li>
+                            <li>Compressed case resolution timelines <strong>25%</strong> through CAN/CAN-FD signal analysis and ECU diagnostics</li>
+                            <li>Elevated fleet-wide repair accuracy <strong>35%</strong> via collaboration with APIM, IPMA, TCU, and GWM teams</li>
+                            <li>Reduced redundant escalations <strong>20%</strong> by operationalizing scalable remote diagnostics workflows</li>
+                            <li>Accelerated engineering response <strong>15%</strong> through actionable pattern intelligence delivered via Jira and Miro</li>
+                        </ul>
+                    </div>
+                </div>
 
+                <!-- American Software LLC -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="glass-card timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">Software Developer</h3>
+                            <span class="timeline-company">American Software LLC</span>
+                        </div>
+                        <div class="timeline-meta">
+                            <span class="timeline-location">📍 Remote</span>
+                            <span class="timeline-date">Jan 2025 – June 2025</span>
+                        </div>
+                        <ul class="timeline-achievements">
+                            <li>Architected modular <strong>Angular & .NET Core</strong> platform, improving frontend performance by 45%</li>
+                            <li>Expanded user engagement <strong>30%</strong> through component-driven interface using React, HTML5, and CSS3</li>
+                            <li>Raised sprint throughput <strong>25%</strong> by translating business requirements into Agile specifications</li>
+                            <li>Enabled horizontal scalability supporting <strong>2× request throughput</strong> via disciplined RESTful API design</li>
+                            <li>Cut UI latency <strong>35%</strong> through lazy loading, code splitting, and optimized state management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- University of Michigan -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="glass-card timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">Software Engineer</h3>
+                            <span class="timeline-company">University of Michigan</span>
+                        </div>
+                        <div class="timeline-meta">
+                            <span class="timeline-location">📍 Dearborn, MI</span>
+                            <span class="timeline-date">Feb 2024 – Dec 2024</span>
+                        </div>
+                        <ul class="timeline-achievements">
+                            <li>Delivered real-time pronunciation engine achieving <strong>147ms latency</strong> and 95% accuracy on GCP</li>
+                            <li>Reduced vehicular cyber-attack exposure <strong>40%</strong> via Python-based anomaly detection system</li>
+                            <li>Engineered CAN-bus ECU testbench, improving protocol validation effectiveness by <strong>23%</strong></li>
+                            <li>Strengthened CAN-bus resilience <strong>20%</strong> using machine-learning anomaly detection with Scikit-learn</li>
+                            <li>Accelerated signal-level tuning <strong>43%</strong> through real-time CAN data visualization dashboards</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Crystalvoxx -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="glass-card timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">Frontend Developer</h3>
+                            <span class="timeline-company">Crystalvoxx Ltd.</span>
+                        </div>
+                        <div class="timeline-meta">
+                            <span class="timeline-location">📍 Gujarat, India</span>
+                            <span class="timeline-date">Aug 2021 – Aug 2022</span>
+                        </div>
+                        <ul class="timeline-achievements">
+                            <li>Modernized legacy EHR platform, cutting load time <strong>25%</strong> and strengthening HIPAA compliance by 35%</li>
+                            <li>Propelled organic traffic growth <strong>50%</strong> through SEO-optimized product experiences</li>
+                            <li>Lifted conversion rates <strong>20%</strong> via responsive, UX-driven user journey re-engineering</li>
+                            <li>Standardized UI development, shrinking future build effort <strong>40%</strong> with reusable component libraries</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- LJ Design Center -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="glass-card timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="timeline-title">Web Developer</h3>
+                            <span class="timeline-company">LJ Design Center</span>
+                        </div>
+                        <div class="timeline-meta">
+                            <span class="timeline-location">📍 Gujarat, India</span>
+                            <span class="timeline-date">July 2020 – Aug 2021</span>
+                        </div>
+                        <ul class="timeline-achievements">
+                            <li>Engineered real-time hackathon platform, raising submission quality <strong>30%</strong> with React & Node.js</li>
+                            <li>Optimized nonprofit operations <strong>40%</strong> via role-based access controls and automated reporting</li>
+                            <li>Amplified community reach <strong>35%</strong> by deploying accessible, high-impact web platforms</li>
+                            <li>Minimized post-deployment defects <strong>20%</strong> through disciplined Git workflows</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+
+                <!-- DeepCANvas -->
+                <div class="glass-card project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">DeepCANvas – Neural CAN Data Anomaly Detection</h3>
+                        <span class="project-date">Research Project</span>
+                    </div>
+                    <p class="project-description">
+                        Neural system for vehicle CAN data anomaly detection. Selected for presentation at <strong>IEEE IAVVC Germany</strong>. 
+                        Implements deep learning pipeline for real-time automotive cybersecurity threat detection.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">CAN Bus</span>
+                        <span class="tag">Cybersecurity</span>
+                        <span class="tag">Deep Learning</span>
+                    </div>
+                </div>
+
+                <!-- Multi-Lingual Summarizer -->
+                <div class="glass-card project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Multi-Lingual Text Summarizer</h3>
+                        <span class="project-date">Sept 2023 – Dec 2023</span>
+                    </div>
+                    <p class="project-description">
+                        Transformer-based summarizer using HuggingFace T5-small, supporting Hindi, Gujarati, and Telugu. 
+                        Reduced reading time by <strong>30%</strong> through optimized NLP pipelines while preserving semantic integrity.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Transformers</span>
+                        <span class="tag">HuggingFace</span>
+                        <span class="tag">NLP</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+
+                <!-- Stock Market Prediction -->
+                <div class="glass-card project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Stock Market Prediction System</h3>
+                        <span class="project-date">Jan 2023 – Apr 2023</span>
+                    </div>
+                    <p class="project-description">
+                        Hybrid deep learning model combining CNN and LSTM for Apple stock forecasting; achieved <strong>0.75 RMSE</strong>. 
+                        Integrated Twitter and news sentiment with time-series data, improving accuracy by 20%.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">CNN</span>
+                        <span class="tag">LSTM</span>
+                        <span class="tag">Keras</span>
+                        <span class="tag">Sentiment Analysis</span>
+                    </div>
+                </div>
+
+                <!-- Cloud Attendance Portal -->
+                <div class="glass-card project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Cloud-Based Attendance Portal</h3>
+                        <span class="project-date">Jan 2023 – Apr 2023</span>
+                    </div>
+                    <p class="project-description">
+                        Real-time attendance portal on GCP using OpenCV for facial recognition, achieving <strong>95% accuracy</strong>. 
+                        Deployed scalable, cloud-native infrastructure ensuring fault-tolerant daily attendance logging.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">GCP</span>
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">Firebase</span>
+                        <span class="tag">Computer Vision</span>
+                    </div>
+                </div>
+
+                <!-- IoT Home Security -->
+                <div class="glass-card project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">IoT Home Security System</h3>
+                        <span class="project-date">Jan 2023 – Apr 2023</span>
+                    </div>
+                    <p class="project-description">
+                        Home security setup using Raspberry Pi, PIR sensors, and magnetic switches. Integrated real-time alerts 
+                        via Adafruit IO. Reduced incident response time by <strong>30%</strong>.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Raspberry Pi</span>
+                        <span class="tag">IoT</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Adafruit IO</span>
+                    </div>
+                </div>
+
+                <!-- Context Derivation -->
+                <div class="glass-card project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Context Derivation for Knowledge Graph</h3>
+                        <span class="project-date">Sept 2022 – Dec 2022</span>
+                    </div>
+                    <p class="project-description">
+                        NLP pipeline using spaCy, BERT, and GPT-2 to extract entities and contextual relationships. 
+                        Increased information retrieval accuracy by <strong>35%</strong> through graph-based context derivation.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">BERT</span>
+                        <span class="tag">GPT-2</span>
+                        <span class="tag">spaCy</span>
+                        <span class="tag">Knowledge Graphs</span>
+                    </div>
+                </div>
+
+                <!-- Fire Detection -->
+                <div class="glass-card project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Realtime Fire Detection System</h3>
+                        <span class="project-date">Jan 2021 – June 2021</span>
+                    </div>
+                    <p class="project-description">
+                        Real-time fire detector using YOLOv3 and OpenCV, reducing false alarm rate by <strong>70%</strong>. 
+                        Lowered implementation cost by 40% through optimized inference speed and edge deployment.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">YOLOv3</span>
+                        <span class="tag">OpenCV</span>
+                        <span class="tag">Computer Vision</span>
+                        <span class="tag">Edge AI</span>
+                    </div>
+                </div>
+
+                <!-- CultVerse -->
+                <div class="glass-card project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">CultVerse – Social Commerce Platform</h3>
+                        <span class="project-date">Sept 2023 – Dec 2023</span>
+                    </div>
+                    <p class="project-description">
+                        Real-time social commerce platform using React and Firebase, boosting fan engagement by <strong>40%</strong>. 
+                        Implemented recommendation engine increasing conversion rates by 25%.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Firebase</span>
+                        <span class="tag">Recommendation Engine</span>
+                        <span class="tag">E-commerce</span>
+                    </div>
+                </div>
+
+                <!-- 8-Bit Microprocessor -->
+                <div class="glass-card project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">8-Bit Microprocessor Simulation</h3>
+                        <span class="project-date">Sept 2023 – Dec 2023</span>
+                    </div>
+                    <p class="project-description">
+                        Virtual 8-bit processor using VHDL on Xilinx Vivado to execute custom instruction sets. 
+                        Designed dedicated ALU for arithmetic/logic operations with validated simulation pipelines.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">VHDL</span>
+                        <span class="tag">Xilinx Vivado</span>
+                        <span class="tag">Computer Architecture</span>
+                        <span class="tag">Digital Design</span>
+                    </div>
+                </div>
+
+                <!-- Arthur AI -->
+                <div class="glass-card project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Arthur AI – Virtual Assistant</h3>
+                        <span class="project-date">May 2020 – July 2020</span>
+                    </div>
+                    <p class="project-description">
+                        Early AI virtual assistant built using custom NLP modules in Python before GPT API release. 
+                        Developed modular backend for multi-intent handling and interactive dialogue management.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">NLP</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Chatbot</span>
+                        <span class="tag">Voice Recognition</span>
+                    </div>
+                </div>
+
+                <!-- Automated Plant Watering -->
+                <div class="glass-card project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Automated Plant Watering System</h3>
+                        <span class="project-date">Feb 2024 – Apr 2024</span>
+                    </div>
+                    <p class="project-description">
+                        Arduino-based automation using soil moisture sensors, optimizing water usage by <strong>25%</strong>. 
+                        Automated manual irrigation tasks via microcontroller integration, reducing human effort by 50%.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Arduino</span>
+                        <span class="tag">IoT</span>
+                        <span class="tag">Sensors</span>
+                        <span class="tag">Automation</span>
+                    </div>
+                </div>
+
+                <!-- Lawssets -->
+                <div class="glass-card project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Lawssets: Attorneys at Work</h3>
+                        <span class="project-date">Sept 2022 – Dec 2022</span>
+                    </div>
+                    <p class="project-description">
+                        Full-stack legal services portal improving public access to state and federal legal resources. 
+                        Integrated advanced search and attorney-matching system, increasing user connection rate by <strong>40%</strong>.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Full-Stack</span>
+                        <span class="tag">Search Engine</span>
+                        <span class="tag">Legal Tech</span>
+                        <span class="tag">UX Design</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="section">
+        <div class="container">
+            <h2 class="section-title">Publications</h2>
+            <div class="glass-card publication-card">
+                <div class="publication-badge">🏆 IEEE Conference</div>
+                <h3 class="publication-title">DeepCANvas – Neural System for Vehicle CAN Data Anomaly Detection</h3>
+                <p class="publication-venue">Selected for presentation at <strong>IEEE IAVVC (International Conference on Intelligent and Advanced Vehicle Vehicular Communications)</strong> · Germany</p>
+                <p class="publication-description">
+                    Presents a novel deep learning architecture for real-time anomaly detection in automotive CAN bus networks, 
+                    addressing cybersecurity vulnerabilities in connected vehicles through neural network-based pattern recognition.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <p class="contact-text">
+                        I'm always interested in discussing <strong>automotive AI/ML</strong>, <strong>embedded systems</strong>, 
+                        <strong>cloud architecture</strong>, or exciting engineering opportunities.
+                    </p>
+                    <div class="contact-details">
+                        <a href="mailto:haardrao23@gmail.com" class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <span>haardrao23@gmail.com</span>
+                        </a>
+                        <a href="tel:+13134782312" class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <span>+1 (313) 478-2312</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/haardrao/" target="_blank" class="contact-item">
+                            <span class="contact-icon">💼</span>
+                            <span>linkedin.com/in/haardrao</span>
+                        </a>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <span>Pontiac, MI 48340</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="glass-card contact-form" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" required placeholder=" ">
+                        <label for="name">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" required placeholder=" ">
+                        <label for="email">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" required placeholder=" ">
+                        <label for="subject">Subject</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
+                        <label for="message">Message</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                                        <p class="form-status" id="form-status"></p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">© 2024 Haard Rao. Built with passion for automotive AI/ML and systems engineering.</p>
+                <div class="footer-links">
+                    <a href="https://www.linkedin.com/in/haardrao/" target="_blank" class="footer-link">LinkedIn</a>
+                    <a href="https://github.com/haardrao" target="_blank" class="footer-link">GitHub</a>
+                    <a href="mailto:haardrao23@gmail.com" class="footer-link">Email</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
