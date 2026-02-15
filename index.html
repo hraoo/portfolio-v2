@@ -12,10 +12,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
     
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
@@ -39,7 +43,6 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-background">
-            <!-- 3D Canvas will go here in Phase 2 -->
             <canvas id="hero-canvas"></canvas>
         </div>
         <div class="hero-content">
@@ -57,7 +60,7 @@
             </p>
             <div class="hero-cta">
                 <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                <a href="assets/HaardRao_Resume.pdf" download class="btn btn-secondary">Download Resume</a>
+                <a href="./assets/HaardRao_Resume.pdf" download class="btn btn-secondary">Download Resume</a>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -72,36 +75,16 @@
             <h2 class="section-title">About Me</h2>
             <div class="glass-card about-card">
                 <p class="about-text">
-                    I build systens that don't fail and I don't see <strong>failure as an option</strong> ever. 
-                    <br><br>
-                    I’m an Embedded & Software Engineer operating at the intersection of automotive systems, cloud platforms, and AI/ML. 
-                    Currently working in embedded vehicle systems, I handle high-severity software escalations across telematics, infotainment,
-                    and powertrain ECUs—transforming complex, ambiguous failures into measurable engineering outcomes through structured diagnostics, 
-                    CAN/CAN-FD analysis, and system-level root cause investigation.
+                    Impact-driven software and systems engineer trusted to design, stabilize, and scale mission-critical 
+                    technology across <strong>cloud, AI, embedded, and distributed environments</strong>. Consistently delivers 
+                    measurable performance gains, risk reduction, and operational clarity in systems where failure is 
+                    expensive and ambiguity is constant.
                 </p>
                 <p class="about-text">
-                    My foundation spans both low-level embedded ecosystems and scalable cloud architectures. I’ve designed and optimized Angular and
-                    .NET Core enterprise platforms, engineered real-time ML pipelines with Python and Scikit-learn, and deployed cloud-native solutions
-                    across GCP and Azure environments. Whether debugging vehicle datalinks or building production-grade APIs, I focus on reliability, performance, 
-                    and measurable impact.
-                </p>
-                <p class="about-text">
-                    I’m deeply metrics-driven and systems-oriented. I don’t just fix issues—I reduce recurrence, compress resolution timelines, and build frameworks
-                    that scale across teams. From building diagnostic workflows and training systems to designing AI-powered applications with sub-second latency, I 
-                    consistently translate technical complexity into operational clarity.
-                </p>
-                 <p class="about-text">
-                   What differentiates me is range with depth:
-                     <ul>
-                         <li>Embedded systems & automotive protocols (CAN, Ethernet, ECU architectures)</li>
-                         <li>Full-stack engineering (.NET, Angular, REST APIs, cloud deployments)</li>
-                         <li>AI/ML engineering (Python, PyTorch, TensorFlow, anomaly detection pipelines)</li>
-                         <li>DevOps & CI/CD (Docker, Git, Azure/AWS/GCP ecosystems)</li>
-                     </ul>
-                    <br>
-                    I thrive in environments where engineering rigor meets innovation—autonomous systems, cloud platforms, data-driven architectures, and mission-critical software.
-                    <br>
-                    If it involves complex systems, measurable performance, and high-stakes reliability, I’m at home.
+                    Currently at <strong>Ford Motor Company</strong>, I neutralize 2,500+ high-severity vehicle software 
+                    escalations monthly, independently dismantling complex failures across telematics, infotainment, and 
+                    powertrain ECUs. Known for owning problems end-to-end, from deep technical root cause to executive-level 
+                    resolution.
                 </p>
                 <div class="about-stats">
                     <div class="stat-item">
@@ -226,8 +209,8 @@
                         <span class="tag">SQL Server</span>
                     </div>
                 </div>
-                
-                 <!-- Soft Skills -->
+
+                <!-- Soft Skills -->
                 <div class="glass-card skill-category">
                     <div class="skill-icon">🤝</div>
                     <h3 class="skill-title">Soft Skills & Leadership</h3>
@@ -238,6 +221,12 @@
                         <span class="tag">Leadership</span>
                         <span class="tag">Communication</span>
                         <span class="tag">Collaboration</span>
+                        <span class="tag">Adaptability</span>
+                        <span class="tag">Time Management</span>
+                        <span class="tag">Mentorship</span>
+                        <span class="tag">Stakeholder Management</span>
+                        <span class="tag">Conflict Resolution</span>
+                        <span class="tag">Presentation Skills</span>
                     </div>
                 </div>
 
@@ -252,6 +241,11 @@
                         <span class="tag">Code Review</span>
                         <span class="tag">Version Control (Git)</span>
                         <span class="tag">Test-Driven Development</span>
+                        <span class="tag">System Design</span>
+                        <span class="tag">Root Cause Analysis</span>
+                        <span class="tag">Technical Documentation</span>
+                        <span class="tag">Lean Manufacturing</span>
+                        <span class="tag">Six Sigma</span>
                     </div>
                 </div>
 
@@ -625,49 +619,62 @@
             <h2 class="section-title">Let's Connect</h2>
             <div class="contact-wrapper">
                 <div class="contact-info">
-                    <p class="contact-text">
+                                        <p class="contact-text">
                         I'm always interested in discussing <strong>automotive AI/ML</strong>, <strong>embedded systems</strong>, 
-                        <strong>cloud architecture</strong>, or exciting engineering opportunities.
+                        <strong>cloud architecture</strong>, and challenging engineering problems. Feel free to reach out!
                     </p>
                     <div class="contact-details">
                         <a href="mailto:haardrao23@gmail.com" class="contact-item">
                             <span class="contact-icon">📧</span>
                             <span>haardrao23@gmail.com</span>
                         </a>
-                        <a href="tel:+13134782312" class="contact-item">
-                            <span class="contact-icon">📱</span>
-                            <span>+1 (313) 478-2312</span>
-                        </a>
                         <a href="https://www.linkedin.com/in/haardrao/" target="_blank" class="contact-item">
                             <span class="contact-icon">💼</span>
-                            <span>linkedin.com/in/haardrao</span>
+                            <span>LinkedIn Profile</span>
                         </a>
-                        <div class="contact-item">
-                            <span class="contact-icon">📍</span>
-                            <span>Pontiac, MI 48340</span>
-                        </div>
+                        <a href="https://github.com/haardrao" target="_blank" class="contact-item">
+                            <span class="contact-icon">💻</span>
+                            <span>GitHub Portfolio</span>
+                        </a>
+                        <a href="tel:+13133226901" class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <span>+1 (313) 322-6901</span>
+                        </a>
                     </div>
                 </div>
-                
-                <form class="glass-card contact-form" id="contact-form">
+
+                <form class="glass-card contact-form" id="contact-form" action="https://formsubmit.co/haardrao23@gmail.com" method="POST">
+                    <!-- Configuration -->
+                    <input type="hidden" name="_subject" value="Portfolio Contact: New Message from Website">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="box">
+                    <input type="hidden" name="_next" value="https://haardrao.github.io/portfolio/?success=true#contact">
+                    <input type="hidden" name="_autoresponse" value="Thank you for reaching out! I appreciate your interest and will get back to you within 24 hours. - Haard Rao">
+                    
+                    <!-- Form Fields -->
                     <div class="form-group">
                         <input type="text" id="name" name="name" required placeholder=" ">
                         <label for="name">Your Name</label>
                     </div>
+                    
                     <div class="form-group">
                         <input type="email" id="email" name="email" required placeholder=" ">
                         <label for="email">Your Email</label>
                     </div>
+                    
                     <div class="form-group">
                         <input type="text" id="subject" name="subject" required placeholder=" ">
                         <label for="subject">Subject</label>
                     </div>
+                    
                     <div class="form-group">
                         <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
                         <label for="message">Message</label>
                     </div>
+                    
                     <button type="submit" class="btn btn-primary btn-full">Send Message</button>
-                                        <p class="form-status" id="form-status"></p>
+                    
+                    <p class="form-status" id="form-status"></p>
                 </form>
             </div>
         </div>
@@ -691,6 +698,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>
+
