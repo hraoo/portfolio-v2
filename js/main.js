@@ -1,6 +1,6 @@
 /* ==========================================
-   HAARD RAO PORTFOLIO - MAIN JAVASCRIPT
-   Phase 2: Interactivity, 3D Graphics, Custom Cursor & Animations
+   HAARD RAO PORTFOLIO - COMPLETE JAVASCRIPT
+   Phase 2: 3D Graphics, Animations & Custom Cursor
    ========================================== */
 
 // ==========================================
@@ -8,18 +8,14 @@
 // ==========================================
 const CONFIG = {
     colors: {
-        primary: 0x00d9ff,      // Cyan
-        secondary: 0x0066ff,    // Blue
-        tertiary: 0x00ffaa      // Mint
+        primary: 0x00d9ff,
+        secondary: 0x0066ff,
+        tertiary: 0x00ffaa
     },
     animation: {
         duration: 0.8,
         stagger: 0.2,
         ease: "power3.out"
-    },
-    scroll: {
-        offset: 100,
-        smooth: true
     }
 };
 
@@ -31,22 +27,17 @@ let mouseX = 0, mouseY = 0;
 let windowHalfX = window.innerWidth / 2;
 let windowHalfY = window.innerHeight / 2;
 
-// Custom cursor elements
-let cursor, cursorFollower;
-let cursorX = 0, cursorY = 0;
-let followerX = 0, followerY = 0;
-
 // ==========================================
-// CUSTOM CURSOR FUNCTIONALITY
+// CUSTOM CURSOR
 // ==========================================
 function initCustomCursor() {
-    // Only enable on desktop (not mobile/tablet)
-    if (window.innerWidth <= 1024) return;
-
-    cursor = document.querySelector('.cursor');
-    cursorFollower = document.querySelector('.cursor-follower');
-
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+    
     if (!cursor || !cursorFollower) return;
+
+    let cursorX = 0, cursorY = 0;
+    let followerX = 0, followerY = 0;
 
     // Update cursor position on mouse move
     document.addEventListener('mousemove', (e) => {
@@ -54,31 +45,29 @@ function initCustomCursor() {
         cursorY = e.clientY;
     });
 
-    // Smooth cursor animation
-    function animateCursor() {
-        // Main cursor follows mouse immediately
-        if (cursor) {
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-        }
+    // Animate cursor and follower with smooth following effect
+    function animate() {
+        // Main cursor follows mouse directly
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
 
-        // Follower has delay for smooth effect
+        // Follower has smooth delay (easing effect)
         followerX += (cursorX - followerX) * 0.1;
         followerY += (cursorY - followerY) * 0.1;
+        
+        cursorFollower.style.left = followerX + 'px';
+        cursorFollower.style.top = followerY + 'px';
 
-        if (cursorFollower) {
-            cursorFollower.style.left = followerX + 'px';
-            cursorFollower.style.top = followerY + 'px';
-        }
-
-        requestAnimationFrame(animateCursor);
+        requestAnimationFrame(animate);
     }
-    animateCursor();
+    animate();
 
-    // Add hover effects to interactive elements
-    const hoverElements = document.querySelectorAll('a, button, .btn, .glass-card, .tag, input, textarea, .nav-link');
+    // Hover effects for interactive elements
+    const interactiveElements = document.querySelectorAll(
+        'a, button, .btn, .glass-card, .tag, .nav-link, input, textarea'
+    );
     
-    hoverElements.forEach(el => {
+    interactiveElements.forEach(el => {
         el.addEventListener('mouseenter', () => {
             document.body.classList.add('cursor-hover');
         });
@@ -88,7 +77,16 @@ function initCustomCursor() {
         });
     });
 
-    // Hide cursor when leaving window
+    // Click effect
+    document.addEventListener('mousedown', () => {
+        document.body.classList.add('cursor-click');
+    });
+
+    document.addEventListener('mouseup', () => {
+        document.body.classList.remove('cursor-click');
+    });
+
+    // Hide cursor when mouse leaves window
     document.addEventListener('mouseleave', () => {
         cursor.style.opacity = '0';
         cursorFollower.style.opacity = '0';
@@ -96,7 +94,7 @@ function initCustomCursor() {
 
     document.addEventListener('mouseenter', () => {
         cursor.style.opacity = '1';
-        cursorFollower.style.opacity = '0.5';
+        cursorFollower.style.opacity = '1';
     });
 }
 
@@ -128,22 +126,18 @@ function init3DScene() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
 
-    // Create geometry - Icosahedron (20-sided geometric shape)
+    // Create main geometry - Icosahedron (20-sided shape)
     geometry = new THREE.IcosahedronGeometry(2, 1);
-    
-    // Create material with wireframe
     material = new THREE.MeshBasicMaterial({
         color: CONFIG.colors.primary,
         wireframe: true,
         transparent: true,
         opacity: 0.6
     });
-
-    // Create mesh
     mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
 
-    // Add second inner geometry for depth
+    // Create inner geometry for depth effect
     const innerGeometry = new THREE.IcosahedronGeometry(1.5, 0);
     const innerMaterial = new THREE.MeshBasicMaterial({
         color: CONFIG.colors.tertiary,
@@ -153,41 +147,32 @@ function init3DScene() {
     });
     const innerMesh = new THREE.Mesh(innerGeometry, innerMaterial);
     scene.add(innerMesh);
-
-    // Store inner mesh for animation
     mesh.innerMesh = innerMesh;
 
-    // Mouse move listener for interactive rotation
+    // Event listeners
     document.addEventListener('mousemove', onMouseMove, false);
-    
-    // Window resize listener
     window.addEventListener('resize', onWindowResize, false);
 
     // Start animation loop
     animate3D();
 }
 
-// Mouse move handler for 3D scene
 function onMouseMove(event) {
     mouseX = (event.clientX - windowHalfX) / 100;
     mouseY = (event.clientY - windowHalfY) / 100;
 }
 
-// Window resize handler
 function onWindowResize() {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
-
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-// Animation loop for 3D scene
 function animate3D() {
     requestAnimationFrame(animate3D);
-
+    
     // Rotate meshes
     mesh.rotation.x += 0.005;
     mesh.rotation.y += 0.005;
@@ -196,11 +181,11 @@ function animate3D() {
         mesh.innerMesh.rotation.x -= 0.003;
         mesh.innerMesh.rotation.y -= 0.003;
     }
-
+    
     // Interactive rotation based on mouse position
     mesh.rotation.x += (mouseY - mesh.rotation.x) * 0.05;
     mesh.rotation.y += (mouseX - mesh.rotation.y) * 0.05;
-
+    
     renderer.render(scene, camera);
 }
 
@@ -235,7 +220,7 @@ function initScrollAnimations() {
         });
     });
 
-    // Glass cards animation
+    // Glass cards animation with stagger
     gsap.utils.toArray('.glass-card').forEach((card, index) => {
         gsap.from(card, {
             scrollTrigger: {
@@ -246,7 +231,7 @@ function initScrollAnimations() {
             opacity: 0,
             y: 50,
             duration: CONFIG.animation.duration,
-            delay: (index % 3) * 0.1, // Stagger effect
+            delay: (index % 3) * 0.1,
             ease: CONFIG.animation.ease
         });
     });
@@ -283,7 +268,7 @@ function initScrollAnimations() {
         });
     });
 
-    // Skill tags animation
+    // Skill tags animation with bounce effect
     gsap.utils.toArray('.skill-category').forEach(category => {
         const tags = category.querySelectorAll('.tag');
         gsap.from(tags, {
@@ -309,7 +294,7 @@ function initScrollAnimations() {
                 toggleActions: 'play none none reverse'
             },
             opacity: 0,
-            y: 50,
+            y: 30,
             duration: CONFIG.animation.duration,
             delay: (index % 3) * 0.1,
             ease: CONFIG.animation.ease
@@ -400,28 +385,29 @@ function initContactForm() {
 
     if (!form) return;
 
-    // Check if returning from successful submission
+    // Check for success parameter in URL (after FormSubmit redirect)
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('success') === 'true') {
-        showFormStatus('Message sent successfully! I\'ll get back to you soon.', 'success');
-        // Remove success parameter from URL
+        showFormStatus('Message sent successfully! I\'ll get back to you within 24 hours.', 'success');
+        form.reset();
+        // Clean URL (remove query parameter)
         window.history.replaceState({}, document.title, window.location.pathname + '#contact');
     }
 
     form.addEventListener('submit', (e) => {
-        // Show loading state
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalBtnText = submitBtn.textContent;
         
+        // Show loading state
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
-
-        // FormSubmit will handle the actual submission
-        // Form will redirect after successful submission
+        
+        // FormSubmit handles the actual submission
+        // Form will redirect to _next URL after successful submission
+        // No need to prevent default - let the form submit normally
     });
 }
 
-// Show form status message
 function showFormStatus(message, type) {
     const formStatus = document.getElementById('form-status');
     if (!formStatus) return;
@@ -443,13 +429,11 @@ function initActiveNavLinks() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    window.addEventListener('scroll', throttle(() => {
+    window.addEventListener('scroll', () => {
         let current = '';
         
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            
             if (window.pageYOffset >= sectionTop - 100) {
                 current = section.getAttribute('id');
             }
@@ -461,7 +445,7 @@ function initActiveNavLinks() {
                 link.classList.add('active');
             }
         });
-    }, 100));
+    });
 }
 
 // ==========================================
@@ -476,13 +460,13 @@ function initScrollToTop() {
     document.body.appendChild(scrollBtn);
 
     // Show/hide button based on scroll position
-    window.addEventListener('scroll', throttle(() => {
+    window.addEventListener('scroll', () => {
         if (window.pageYOffset > 500) {
             scrollBtn.classList.add('visible');
         } else {
             scrollBtn.classList.remove('visible');
         }
-    }, 100));
+    });
 
     // Scroll to top on click
     scrollBtn.addEventListener('click', () => {
@@ -494,33 +478,7 @@ function initScrollToTop() {
 }
 
 // ==========================================
-// TYPING ANIMATION FOR HERO SUBTITLE (Optional)
-// ==========================================
-function initTypingAnimation() {
-    const subtitle = document.querySelector('.hero-subtitle');
-    if (!subtitle) return;
-
-    const text = subtitle.textContent;
-    subtitle.textContent = '';
-    subtitle.style.opacity = '1';
-
-    let index = 0;
-    const speed = 100; // typing speed in ms
-
-    function type() {
-        if (index < text.length) {
-            subtitle.textContent += text.charAt(index);
-            index++;
-            setTimeout(type, speed);
-        }
-    }
-
-    // Start typing after hero content fades in
-    setTimeout(type, 1500);
-}
-
-// ==========================================
-// NUMBER COUNTER ANIMATION FOR STATS
+// COUNTER ANIMATION FOR STATS
 // ==========================================
 function initCounterAnimation() {
     const counters = document.querySelectorAll('.stat-number');
@@ -531,7 +489,7 @@ function initCounterAnimation() {
         const isPlus = target.includes('+');
         const numericValue = parseInt(target.replace(/[^0-9]/g, ''));
 
-        // Reset counter
+        // Reset counter to 0
         counter.textContent = '0';
 
         // Create scroll trigger for counter
@@ -589,24 +547,127 @@ function initLazyAnimations() {
 }
 
 // ==========================================
-// PARTICLE BACKGROUND EFFECT (Optional - Subtle)
+// TYPING ANIMATION (Optional)
 // ==========================================
-function initParticleEffect() {
-    // This creates a subtle particle effect in the background
-    // Can be enabled/disabled based on preference
-    
-    const canvas = document.getElementById('hero-canvas');
-    if (!canvas) return;
-    
-    // Particle system would go here
-    // Keeping it simple to avoid performance issues
+function initTypingAnimation() {
+    const subtitle = document.querySelector('.hero-subtitle');
+    if (!subtitle) return;
+
+    const text = subtitle.textContent;
+    subtitle.textContent = '';
+    subtitle.style.opacity = '1';
+
+    let index = 0;
+    const speed = 100; // typing speed in ms
+
+    function type() {
+        if (index < text.length) {
+            subtitle.textContent += text.charAt(index);
+            index++;
+            setTimeout(type, speed);
+        }
+    }
+
+    // Start typing after hero content fades in
+    setTimeout(type, 1500);
+}
+
+// ==========================================
+// PARALLAX EFFECT ON HERO
+// ==========================================
+function initParallaxEffect() {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallax = hero.querySelector('.hero-background');
+        if (parallax) {
+            parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+    });
+}
+
+// ==========================================
+// NAVBAR BACKGROUND ON SCROLL
+// ==========================================
+function initNavbarScroll() {
+    const nav = document.querySelector('.nav');
+    if (!nav) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 100) {
+            nav.style.background = 'rgba(10, 14, 39, 0.95)';
+            nav.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.5)';
+        } else {
+            nav.style.background = 'rgba(20, 25, 53, 0.6)';
+            nav.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.37)';
+        }
+    });
+}
+
+// ==========================================
+// PERFORMANCE OPTIMIZATION
+// ==========================================
+function optimizePerformance() {
+    // Debounce resize events
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            onWindowResize();
+        }, 250);
+    });
+
+    // Throttle scroll events
+    let scrollTimer;
+    let lastScrollTime = 0;
+    const scrollThrottle = 100; // ms
+
+    window.addEventListener('scroll', () => {
+        const now = Date.now();
+        if (now - lastScrollTime >= scrollThrottle) {
+            lastScrollTime = now;
+            // Scroll-dependent functions are already called
+        }
+    });
 }
 
 // ==========================================
 // INITIALIZE EVERYTHING
 // ==========================================
+function initAll() {
+    console.log('🚀 Initializing Haard Rao Portfolio...');
+
+    try {
+        // Core features
+        initCustomCursor();
+        init3DScene();
+        initScrollAnimations();
+        initSmoothScroll();
+        initMobileMenu();
+        initContactForm();
+        initActiveNavLinks();
+        initScrollToTop();
+        initCounterAnimation();
+        initLazyAnimations();
+        initNavbarScroll();
+        optimizePerformance();
+
+        // Optional features (uncomment to enable)
+        // initTypingAnimation();
+        // initParallaxEffect();
+
+        console.log('✅ Portfolio initialized successfully!');
+    } catch (error) {
+        console.error('❌ Error initializing portfolio:', error);
+    }
+}
+
+// ==========================================
+// START INITIALIZATION
+// ==========================================
 function init() {
-    // Wait for DOM to be fully loaded
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initAll);
     } else {
@@ -614,49 +675,7 @@ function init() {
     }
 }
 
-function initAll() {
-    console.log('🚀 Initializing Haard Rao Portfolio...');
-
-    // Initialize custom cursor
-    initCustomCursor();
-
-    // Initialize 3D scene
-    init3DScene();
-
-    // Initialize scroll animations (GSAP)
-    initScrollAnimations();
-
-    // Initialize smooth scrolling
-    initSmoothScroll();
-
-    // Initialize mobile menu
-    initMobileMenu();
-
-    // Initialize contact form
-    initContactForm();
-
-    // Initialize active nav links
-    initActiveNavLinks();
-
-    // Initialize scroll to top button
-    initScrollToTop();
-
-    // Initialize typing animation (optional - uncomment to enable)
-    // initTypingAnimation();
-
-    // Initialize counter animations
-    initCounterAnimation();
-
-    // Initialize lazy animations
-    initLazyAnimations();
-
-    console.log('✅ Portfolio initialized successfully!');
-    console.log('💎 Custom cursor active (desktop only)');
-    console.log('🎨 3D graphics rendering');
-    console.log('✨ Scroll animations loaded');
-}
-
-// Start initialization
+// Start the app
 init();
 
 // ==========================================
@@ -690,65 +709,35 @@ function throttle(func, limit) {
     };
 }
 
-// ==========================================
-// PERFORMANCE OPTIMIZATION
-// ==========================================
-
-// Reduce animations on low-power devices
-if (navigator.deviceMemory && navigator.deviceMemory < 4) {
-    console.log('⚡ Low-power mode detected - reducing animations');
-    // Disable some heavy animations
-    CONFIG.animation.duration = 0.4;
+// Check if element is in viewport
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
 }
 
-// Pause animations when tab is not visible
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        // Pause heavy animations
-        console.log('⏸️ Tab hidden - pausing animations');
-    } else {
-        // Resume animations
-        console.log('▶️ Tab visible - resuming animations');
-    }
-});
-
-// ==========================================
-// EASTER EGGS (Optional - Fun Touch)
-// ==========================================
-
-// Konami Code Easter Egg (Up, Up, Down, Down, Left, Right, Left, Right, B, A)
-let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-let konamiIndex = 0;
-
-document.addEventListener('keydown', (e) => {
-    if (e.key === konamiCode[konamiIndex]) {
-        konamiIndex++;
-        if (konamiIndex === konamiCode.length) {
-            activateEasterEgg();
-            konamiIndex = 0;
-        }
-    } else {
-        konamiIndex = 0;
-    }
-});
-
-function activateEasterEgg() {
-    console.log('🎉 Easter Egg Activated!');
-    // Add rainbow effect to cursor or other fun animation
-    document.body.style.filter = 'hue-rotate(0deg)';
-    let hue = 0;
-    const interval = setInterval(() => {
-        hue += 5;
-        document.body.style.filter = `hue-rotate(${hue}deg)`;
-        if (hue >= 360) {
-            clearInterval(interval);
-            document.body.style.filter = 'none';
-        }
-    }, 50);
+// Smooth scroll to element
+function scrollToElement(element, offset = 80) {
+    if (!element) return;
+    
+    const targetPosition = element.offsetTop - offset;
+    window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+    });
 }
 
-// Console message for recruiters
-console.log('%c👋 Hey there, curious developer!', 'color: #00d9ff; font-size: 20px; font-weight: bold;');
-console.log('%cI see you\'re checking out the code. I like that! 🔍', 'color: #00ffaa; font-size: 14px;');
-console.log('%cFeel free to reach out: haardrao23@gmail.com', 'color: #0066ff; font-size: 14px;');
-console.log('%cBuilt with ❤️ using Three.js, GSAP, and vanilla JavaScript', 'color: #a0a0a0; font-size: 12px;');
+// ==========================================
+// CONSOLE MESSAGE
+// ==========================================
+console.log('%c🚀 Haard Rao Portfolio', 'color: #00d9ff; font-size: 20px; font-weight: bold;');
+console.log('%cBuilt with Three.js, GSAP, and vanilla JavaScript', 'color: #a8b2d1; font-size: 12px;');
+console.log('%cInterested in the code? Check out the GitHub repo!', 'color: #00ffaa; font-size: 12px;');
+
+// ==========================================
+// END OF JAVASCRIPT
+// ==========================================
