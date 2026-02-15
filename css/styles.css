@@ -1,6 +1,7 @@
 /* ==========================================
    HAARD RAO PORTFOLIO - STYLES
    Dark Theme with Glassmorphism & 3D Elements
+   Phase 2: With Custom Cursor
    ========================================== */
 
 /* ==========================================
@@ -61,6 +62,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: none !important; /* Hide default cursor */
 }
 
 html {
@@ -82,6 +84,60 @@ body {
 ::selection {
     background-color: var(--color-accent-cyan);
     color: var(--color-bg-primary);
+}
+
+/* ==========================================
+   CUSTOM CURSOR
+   ========================================== */
+.cursor {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: var(--color-accent-cyan);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: screen;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    box-shadow: 0 0 20px var(--color-accent-cyan),
+                0 0 40px var(--color-accent-cyan),
+                0 0 60px var(--color-accent-cyan);
+}
+
+.cursor-follower {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--color-accent-cyan);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    opacity: 0.5;
+}
+
+/* Cursor hover effects */
+body.cursor-hover .cursor {
+    transform: scale(0.5);
+}
+
+body.cursor-hover .cursor-follower {
+    width: 60px;
+    height: 60px;
+    opacity: 0.8;
+    border-color: var(--color-accent-mint);
+}
+
+/* Hide custom cursor on mobile/tablet */
+@media (max-width: 1024px) {
+    .cursor,
+    .cursor-follower {
+        display: none !important;
+    }
+    
+    * {
+        cursor: auto !important;
+    }
 }
 
 /* ==========================================
@@ -186,7 +242,6 @@ strong {
     text-transform: uppercase;
     letter-spacing: 1px;
     border-radius: var(--radius-sm);
-    cursor: pointer;
     transition: var(--transition-normal);
     border: 2px solid transparent;
     text-align: center;
@@ -276,12 +331,16 @@ strong {
     background: var(--glass-bg);
 }
 
+.nav-link.active {
+    color: var(--color-accent-cyan);
+    background: var(--glass-bg);
+}
+
 /* Mobile Menu Toggle */
 .nav-toggle {
     display: none;
     flex-direction: column;
     gap: 5px;
-    cursor: pointer;
 }
 
 .nav-toggle span {
@@ -436,7 +495,8 @@ strong {
 }
 
 .stat-number {
-    display: block;
+    display: inline-block;
+    min-width: 80px;
     font-family: var(--font-heading);
     font-size: 2.5rem;
     font-weight: 900;
@@ -828,198 +888,4 @@ strong {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: var(--spacing-sm);
-}
-
-.footer-text {
-    color: var(--color-text-muted);
-    font-size: 0.9rem;
-}
-
-.footer-links {
-    display: flex;
-    gap: var(--spacing-md);
-}
-
-.footer-link {
-    color: var(--color-text-secondary);
-    font-size: 0.9rem;
-    transition: var(--transition-fast);
-}
-
-.footer-link:hover {
-    color: var(--color-accent-cyan);
-}
-
-/* ==========================================
-   RESPONSIVE DESIGN
-   ========================================== */
-
-/* Tablets and below (max-width: 768px) */
-@media (max-width: 768px) {
-    :root {
-        --spacing-lg: 3rem;
-        --spacing-xl: 4rem;
-    }
-    
-    .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        flex-direction: column;
-        background: rgba(0, 0, 0, 0.98);
-        width: 100%;
-        padding: var(--spacing-md);
-        transition: var(--transition-normal);
-        border-top: 1px solid var(--glass-border);
-    }
-    
-    .nav-menu.active {
-        left: 0;
-    }
-    
-    .nav-toggle {
-        display: flex;
-    }
-    
-    .hero-cta {
-        flex-direction: column;
-    }
-    
-    .about-stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .timeline::before {
-        left: 0;
-    }
-    
-    .timeline-item {
-        padding-left: 2rem;
-    }
-    
-    .timeline-header {
-        flex-direction: column;
-    }
-    
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .contact-wrapper {
-        grid-template-columns: 1fr;
-    }
-    
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-    }
-}
-
-/* Mobile (max-width: 480px) */
-@media (max-width: 480px) {
-    .container {
-        padding: 0 var(--spacing-sm);
-    }
-    
-    .about-stats {
-        grid-template-columns: 1fr;
-    }
-    
-    .stat-number {
-        font-size: 2rem;
-    }
-}
-
-/* Large screens (min-width: 1400px) */
-@media (min-width: 1400px) {
-    :root {
-        --container-width: 1400px;
-    }
-}
-
-/* ==========================================
-   ANIMATIONS & EFFECTS
-   ========================================== */
-
-/* Fade in animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Glow effect */
-@keyframes glow {
-    0%, 100% {
-        box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
-    }
-    50% {
-        box-shadow: 0 0 40px rgba(0, 217, 255, 0.6);
-    }
-}
-
-/* Pulse animation */
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-}
-
-/* ==========================================
-   LOADING STATE
-   ========================================== */
-.loading {
-    pointer-events: none;
-    opacity: 0.6;
-}
-
-/* ==========================================
-   ACCESSIBILITY
-   ========================================== */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
-
-/* Focus styles for keyboard navigation */
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-    outline: 2px solid var(--color-accent-cyan);
-    outline-offset: 2px;
-}
-
-/* ==========================================
-   PRINT STYLES
-   ========================================== */
-@media print {
-    .nav,
-    .scroll-indicator,
-    .footer {
-        display: none;
-    }
-    
-    body {
-        background: white;
-        color: black;
-    }
-}
+    gap: var(
