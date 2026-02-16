@@ -935,3 +935,163 @@ p {
     .projects-grid {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     }
+
+/* ==========================================
+   STRUCTURE FIX OVERRIDES (paste at bottom)
+   Fix: grid width, card stretching, hero canvas sizing
+   ========================================== */
+
+/* Ensure container truly centers and doesn't collapse */
+.container {
+  width: min(1100px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+/* Sections shouldn't create weird horizontal constraints */
+.section {
+  width: 100%;
+}
+
+/* --------------------------
+   HERO / CANVAS CONSTRAINTS
+   -------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#hero-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Ensure hero text is above canvas */
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* --------------------------
+   FIX GLASS CARD STRETCHING
+   -------------------------- */
+.glass-card {
+  height: auto !important;      /* prevents tall empty cards */
+  min-height: 0 !important;
+}
+
+/* If you previously had grid items stretching, stop it */
+.skills-grid,
+.projects-grid {
+  align-items: stretch;
+}
+
+.skill-category,
+.project-card {
+  height: auto;
+}
+
+/* --------------------------
+   SKILLS GRID (desktop = 4 cols, then 2, then 1)
+   -------------------------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+@media (max-width: 1100px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Make skills cards compact and consistent */
+.skill-category {
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.skill-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.skill-title {
+  margin-bottom: 1rem;
+}
+
+/* Keep tags from causing overflow */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.tag {
+  white-space: nowrap;
+}
+
+/* --------------------------
+   PROJECTS GRID (desktop = 2 cols, then 1)
+   -------------------------- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Make project card layout stable */
+.project-card {
+  padding: 1.5rem;
+}
+
+.project-description {
+  margin-top: 0.75rem;
+}
+
+/* --------------------------
+   TIMELINE WIDTH FIX
+   -------------------------- */
+.timeline {
+  width: 100%;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+/* --------------------------
+   NAV + SECTION SPACING FIX
+   -------------------------- */
+.nav {
+  width: 100%;
+}
+
+.hero {
+  padding-top: 7rem; /* ensures nav doesn't overlap hero */
+}
+
+/* Prevent accidental horizontal scroll from long elements */
+body {
+  overflow-x: hidden;
+}
+
